@@ -1,30 +1,32 @@
 import * as ios from './ios';
 import * as android from './android';
 
-
+export enum VibrateType {
+  TAP = 'tap',
+  MEDIUM = 'medium',
+  HEAVY = 'heavy',
+}
 
 export class Vibrate {
-  public static readonly TAP = 'tap';
-  public static readonly MEDIUM = 'medium';
-  public static readonly HEAVY = 'heavy';
+  public static readonly Type = VibrateType;
 
-  public static vibrate(type: Vibrate) {
+  public static vibrate(type: VibrateType) {
     if (ios.Module) {
-      if (type === Vibrate.TAP) {
+      if (type === VibrateType.TAP) {
         ios.Module.vibrate(ios.VibrateType.ImpactLight);
-      } else if (type === Vibrate.MEDIUM) {
+      } else if (type === VibrateType.MEDIUM) {
         ios.Module.vibrate(ios.VibrateType.ImpactMedium);
-      } else if (type === Vibrate.HEAVY) {
+      } else if (type === VibrateType.HEAVY) {
         ios.Module.vibrate(ios.VibrateType.ImpactHeavy);
       } else {
         ios.Module.vibrate(ios.VibrateType.ImpactLight);
       }
     } else if (android.Module) {
-      if (type === Vibrate.TAP) {
+      if (type === VibrateType.TAP) {
         android.Module.vibrate(android.VibrateType.KEYBOARD_TAP);
-      } else if (type === Vibrate.MEDIUM) {
+      } else if (type === VibrateType.MEDIUM) {
         android.Module.vibrate(android.VibrateType.CONTEXT_CLICK);
-      } else if (type === Vibrate.HEAVY) {
+      } else if (type === VibrateType.HEAVY) {
         android.Module.vibrate(android.VibrateType.REJECT);
       } else {
         android.Module.vibrate(android.VibrateType.KEYBOARD_TAP);

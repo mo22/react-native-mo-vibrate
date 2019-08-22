@@ -1,6 +1,9 @@
+export declare enum VibrateType {
+    TAP = "tap",
+    MEDIUM = "medium",
+    HEAVY = "heavy"
+}
 export declare class Vibrate {
-    static readonly TAP = "tap";
-    static readonly MEDIUM = "medium";
-    static readonly HEAVY = "heavy";
-    static vibrate(type: Vibrate): void;
+    static readonly Type: typeof VibrateType;
+    static vibrate(type: VibrateType): void;
 }
