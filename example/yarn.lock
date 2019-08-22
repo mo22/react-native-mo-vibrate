@@ -5247,7 +5247,7 @@ react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
 
 "react-native-mo-vibrate@git+https://github.com/mo22/react-native-mo-vibrate.git":
   version "0.1.0"
-  resolved "git+https://github.com/mo22/react-native-mo-vibrate.git#4573c417c8ce5b3061e9647dca50dd9815352e03"
+  resolved "git+https://github.com/mo22/react-native-mo-vibrate.git#9b9dc8918cc8a43b2c7541cdb1538b2bbd1ba0fa"
 
 react-native@0.60.5:
   version "0.60.5"
