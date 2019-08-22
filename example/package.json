@@ -9,10 +9,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.6.1",
     "react": "16.8.6",
     "react-native": "0.60.5",
-    "react-native-mo-vibrate": "../react-native-mo-vibrate-1.0.0.tgz"
+    "react-native-mo-vibrate": "../react-native-mo-vibrate-0.1.0.tgz"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

@@ -5250,9 +5250,9 @@ react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
   integrity sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw==
 
-react-native-mo-vibrate@../react-native-mo-vibrate-1.0.0.tgz:
-  version "1.0.0"
-  resolved "../react-native-mo-vibrate-1.0.0.tgz#b4b903e420352b12a4b48543be064cdb163a78ff"
+react-native-mo-vibrate@../react-native-mo-vibrate-0.1.0.tgz:
+  version "0.1.0"
+  resolved "../react-native-mo-vibrate-0.1.0.tgz#a6561485bc41e0c15544675c380fdefb61998175"
 
 react-native@0.60.5:
   version "0.60.5"
