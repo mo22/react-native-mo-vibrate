@@ -13,6 +13,19 @@ class App extends React.PureComponent<{}> {
 
         <View style={{ height: 100 }} />
 
+        <TouchableOpacity
+          onPress={() => {
+          }}
+          style={{
+            padding: 10,
+            margin: 10,
+            borderRadius: 5,
+            backgroundColor: 'red',
+          }}
+        >
+          <Text>nothing</Text>
+        </TouchableOpacity>
+
         {keysOf(Vibrate.Type).map((type) => (
           <TouchableOpacity
             key={type}
