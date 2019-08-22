@@ -2,6 +2,10 @@ import * as React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { Vibrate } from 'react-native-mo-vibrate';
 
+function keysOf<T extends {}>(obj: T): (keyof T)[] {
+  return Object.keys(obj) as any;
+}
+
 class App extends React.PureComponent<{}> {
   public render() {
     return (
@@ -9,19 +13,23 @@ class App extends React.PureComponent<{}> {
 
         <View style={{ height: 100 }} />
 
-        <TouchableOpacity
-          onPress={() => {
-            Vibrate.vibrate(Vibrate.Type.MEDIUM);
-          }}
-          style={{
-            padding: 10,
-            margin: 10,
-            borderRadius: 5,
-            backgroundColor: 'red',
-          }}
-        >
-          <Text>test</Text>
-        </TouchableOpacity>
+        {keysOf(Vibrate.Type).map((type) => (
+          <TouchableOpacity
+            key={type}
+            onPress={() => {
+              Vibrate.vibrate(Vibrate.Type[type]);
+            }}
+            style={{
+              padding: 10,
+              margin: 10,
+              borderRadius: 5,
+              backgroundColor: 'red',
+            }}
+          >
+            <Text>{type}</Text>
+          </TouchableOpacity>
+        ))}
+
       </View>
     );
   }
