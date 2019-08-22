@@ -5,12 +5,21 @@ import { Vibrate } from 'react-native-mo-vibrate';
 class App extends React.PureComponent<{}> {
   public render() {
     return (
-      <View style={{ backgroundColor: 'red' }}>
+      <View style={{ flex: 1 }}>
 
+        <View style={{ height: 100 }} />
 
-        <TouchableOpacity onPress={() => {
-          Vibrate.vibrate();
-        }}>
+        <TouchableOpacity
+          onPress={() => {
+            Vibrate.vibrate(Vibrate.MEDIUM);
+          }}
+          style={{
+            padding: 10,
+            margin: 10,
+            borderRadius: 5,
+            backgroundColor: 'red',
+          }}
+        >
           <Text>test</Text>
         </TouchableOpacity>
       </View>
