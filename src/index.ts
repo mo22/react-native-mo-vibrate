@@ -2,22 +2,26 @@ import * as ios from './ios';
 import * as android from './android';
 
 export enum VibrateType {
-  /*
-   * just a tap
+  /**
+   * just a slight tap
    */
   TAP = 'tap',
 
-  /*
-   * medium one time
+  /**
+   * a little bit more
    */
   MEDIUM = 'medium',
+
+  /**
+   * bang it!
+   */
   HEAVY = 'heavy',
 }
 
 export class Vibrate {
   public static readonly Type = VibrateType;
 
-  /*
+  /**
    * Vibrate
    */
   public static vibrate(type: VibrateType) {
