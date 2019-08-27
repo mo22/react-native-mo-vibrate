@@ -67,16 +67,20 @@ public class ReactNativeMoVibrate extends ReactContextBaseJavaModule {
         }
         int repeat = args.getInt("repeat");
         Vibrator vibrator = (Vibrator)getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (false && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             Log.i("XXX", "go with waveform");
             VibrationEffect vibe = VibrationEffect.createWaveform(pattern, amplitude, repeat);
 //            VibrationEffect vibe = VibrationEffect.createOneShot(1000, 255);
             Log.i("XXX", "vibe=" + vibe);
             if (getReactApplicationContext().checkSelfPermission(android.Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
                 Log.i("XXX", "go vibrate");
-                vibrator.vibrate(vibe); // this locks android up?
-//                new Handler().post(() -> vibrator.vibrate(vibe));
+//                vibrator.vibrate(vibe); // this locks android up?
+                new Handler().post(() -> {
+                    Vibrator vibrator2 = (Vibrator)getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+                    vibrator2.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
+                });
 //                getReactApplicationContext().runOnUiQueueThread(() -> vibrator.vibrate(vibe));
+
             } else {
                 Log.i("XXX", "no permission");
             }
