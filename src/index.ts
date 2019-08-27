@@ -16,6 +16,11 @@ export enum VibrateType {
    * bang it!
    */
   HEAVY = 'heavy',
+
+  /**
+   * twice, short
+   */
+  TWICE = 'twice',
 }
 
 export class Vibrate {
@@ -45,6 +50,8 @@ export class Vibrate {
         ios.Module.vibrate(ios.VibrateType.ImpactMedium);
       } else if (type === VibrateType.HEAVY) {
         ios.Module.vibrate(ios.VibrateType.ImpactHeavy);
+      } else if (type === VibrateType.TWICE) {
+        ios.Module.vibrate(ios.VibrateType.NotificationSuccess);
       } else {
         ios.Module.vibrate(ios.VibrateType.ImpactLight);
       }
@@ -52,8 +59,10 @@ export class Vibrate {
       if (type === VibrateType.TAP) {
         android.Module.vibrate(android.VibrateType.KEYBOARD_TAP);
       } else if (type === VibrateType.MEDIUM) {
-        android.Module.vibrate(android.VibrateType.CONTEXT_CLICK);
+        android.Module.vibrate(android.VibrateType.LONG_PRESS);
       } else if (type === VibrateType.HEAVY) {
+        android.Module.vibrate(android.VibrateType.CONTEXT_CLICK);
+      } else if (type === VibrateType.TWICE) {
         android.Module.vibrate(android.VibrateType.REJECT);
       } else {
         android.Module.vibrate(android.VibrateType.KEYBOARD_TAP);

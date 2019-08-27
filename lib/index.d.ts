@@ -12,7 +12,11 @@ export declare enum VibrateType {
     /**
      * bang it!
      */
-    HEAVY = "heavy"
+    HEAVY = "heavy",
+    /**
+     * twice, short
+     */
+    TWICE = "twice"
 }
 export declare class Vibrate {
     /**
