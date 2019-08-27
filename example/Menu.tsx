@@ -4,7 +4,8 @@ import { ListItem } from 'react-native-elements';
 import { Vibrate } from 'react-native-mo-vibrate';
 
 function keysOf<T extends {}>(obj: T): (keyof T)[] {
-  return Object.keys(obj) as any;
+  const objany = obj as any;
+  return Object.keys(obj).filter((i) => typeof objany[objany[i]] !== 'number') as any;
 }
 
 export default class Menu extends React.PureComponent<{}> {
