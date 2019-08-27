@@ -43,9 +43,14 @@ class App extends React.PureComponent<{}> {
           </TouchableOpacity>
         ))}
 
-        {Vibrate.android && (
+        {Vibrate.android.Module && (
           <TouchableOpacity
             onPress={() => {
+              Vibrate.android.Module!.vibratePattern({
+                pattern: [ 1000, 100, 100, 1000 ],
+                amplitude: [ 255, 100, 100, 50 ],
+                repeat: 3,
+              });
             }}
             style={{
               padding: 10,

@@ -18,11 +18,11 @@ export declare class Vibrate {
     /**
      * native ios functions. use with caution
      */
-    static ios: typeof ios;
+    static readonly ios: typeof ios;
     /**
      * native android functions. use with caution
      */
-    static android: typeof android;
+    static readonly android: typeof android;
     /**
      * Vibrate.Type enum
      */

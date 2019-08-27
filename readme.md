@@ -15,8 +15,8 @@ Vibrate.vibrate(Vibrate.Type.TAP);
 ```ts
 import { Vibrate } from 'react-native-mo-vibrate';
 
-if (Vibrate.android) {
-  Vibrate.android.vibratePattern({
+if (Vibrate.android.Module) {
+  Vibrate.android.Module.vibratePattern({
     pattern: [ 500, 100, 500 ],
     amplitude; [ 255, 127, 255 ],
     repeat: 3,

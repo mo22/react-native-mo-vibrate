@@ -22,12 +22,12 @@ export class Vibrate {
   /**
    * native ios functions. use with caution
    */
-  public static ios = ios;
+  public static readonly ios = ios;
 
   /**
    * native android functions. use with caution
    */
-  public static android = android;
+  public static readonly android = android;
 
   /**
    * Vibrate.Type enum
