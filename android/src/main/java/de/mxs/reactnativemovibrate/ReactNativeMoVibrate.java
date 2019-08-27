@@ -3,6 +3,7 @@ package de.mxs.reactnativemovibrate;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
@@ -14,8 +15,6 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
-
-import java.util.Arrays;
 
 import javax.annotation.Nonnull;
 
@@ -70,13 +69,14 @@ public class ReactNativeMoVibrate extends ReactContextBaseJavaModule {
         Vibrator vibrator = (Vibrator)getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             Log.i("XXX", "go with waveform");
-//            VibrationEffect vibe = VibrationEffect.createWaveform(pattern, amplitude, repeat);
-            VibrationEffect vibe = VibrationEffect.createOneShot(1000, 255);
+            VibrationEffect vibe = VibrationEffect.createWaveform(pattern, amplitude, repeat);
+//            VibrationEffect vibe = VibrationEffect.createOneShot(1000, 255);
             Log.i("XXX", "vibe=" + vibe);
-            // run this in background?
             if (getReactApplicationContext().checkSelfPermission(android.Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
                 Log.i("XXX", "go vibrate");
-                vibrator.vibrate(vibe);
+                vibrator.vibrate(vibe); // this locks android up?
+//                new Handler().post(() -> vibrator.vibrate(vibe));
+//                getReactApplicationContext().runOnUiQueueThread(() -> vibrator.vibrate(vibe));
             } else {
                 Log.i("XXX", "no permission");
             }

@@ -21,8 +21,8 @@ export interface Module {
     vibrate(type: VibrateType): void;
     vibratePattern(args: {
         pattern: number[];
-        amplitude: number[];
-        repeat: number;
+        amplitude?: number[];
+        repeat?: number;
     }): void;
 }
 export declare const Module: Module | undefined;
