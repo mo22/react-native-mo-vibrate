@@ -22,7 +22,7 @@ export enum VibrateType {
 
 export interface Module {
   vibrate(type: VibrateType): void;
-  vibratePattern(args: { pattern: number[]; amplitude?: number[]; repeat?: number; }): void;
+  vibratePattern(args: { pattern: number[]; amplitude: number[]; repeat: number; }): void;
 }
 
 export const Module = (Platform.OS === 'android') ? NativeModules.ReactNativeMoVibrate as Module : undefined;

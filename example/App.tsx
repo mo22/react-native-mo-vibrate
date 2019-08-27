@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text, PermissionsAndroid } from 'react-native';
 import { Vibrate } from 'react-native-mo-vibrate';
 
 function keysOf<T extends {}>(obj: T): (keyof T)[] {
@@ -45,11 +45,12 @@ class App extends React.PureComponent<{}> {
 
         {Vibrate.android.Module && (
           <TouchableOpacity
-            onPress={() => {
+            onPress={async () => {
+              await PermissionsAndroid.request('android.permission.VIBRATE' as any);
               Vibrate.android.Module!.vibratePattern({
-                pattern: [ 1000, 100, 100, 1000 ],
-                amplitude: [ 255, 100, 100, 50 ],
-                repeat: 3,
+                pattern: [ 1000, 100 ],
+                amplitude: [ 255, 255 ],
+                repeat: -1,
               });
             }}
             style={{
@@ -60,6 +61,22 @@ class App extends React.PureComponent<{}> {
             }}
           >
             <Text>android custom</Text>
+          </TouchableOpacity>
+        )}
+
+        {Vibrate.ios.Module && (
+          <TouchableOpacity
+            onPress={() => {
+              Vibrate.ios.Module!.vibrate(Vibrate.ios.VibrateType.NotificationSuccess);
+            }}
+            style={{
+              padding: 10,
+              margin: 10,
+              borderRadius: 5,
+              backgroundColor: 'red',
+            }}
+          >
+            <Text>ios custom</Text>
           </TouchableOpacity>
         )}
 
