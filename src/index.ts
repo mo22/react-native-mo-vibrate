@@ -22,7 +22,7 @@ export class Vibrate {
   public static readonly Type = VibrateType;
 
   /**
-   * Vibrate
+   * Vibrate. See Vibrate.Type
    */
   public static vibrate(type: VibrateType) {
     if (ios.Module) {

@@ -15,7 +15,7 @@ export declare enum VibrateType {
 export declare class Vibrate {
     static readonly Type: typeof VibrateType;
     /**
-     * Vibrate
+     * Vibrate. See Vibrate.Type
      */
     static vibrate(type: VibrateType): void;
 }
