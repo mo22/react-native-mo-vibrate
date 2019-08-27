@@ -19,6 +19,19 @@ export enum VibrateType {
 }
 
 export class Vibrate {
+  /**
+   * native ios functions. use with caution
+   */
+  public static ios = ios;
+
+  /**
+   * native android functions. use with caution
+   */
+  public static android = android;
+
+  /**
+   * Vibrate.Type enum
+   */
   public static readonly Type = VibrateType;
 
   /**
