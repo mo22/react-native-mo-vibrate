@@ -2,10 +2,8 @@ package de.mxs.reactnativemovibrate;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 
@@ -69,23 +67,12 @@ public class ReactNativeMoVibrate extends ReactContextBaseJavaModule {
         getReactApplicationContext().runOnUiQueueThread(() -> {
             Vibrator vibrator = (Vibrator)getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                Log.i("XXX", "go with waveform");
                 VibrationEffect vibe = VibrationEffect.createWaveform(pattern, amplitude, repeat);
-                Log.i("XXX", "vibe=" + vibe);
-                if (getReactApplicationContext().checkSelfPermission(android.Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
-                    Log.i("XXX", "go vibrate");
-                    vibrator.vibrate(vibe); // this locks android up?
-                } else {
-                    Log.i("XXX", "no permission");
-                }
-                Log.i("XXX", "yeah");
+                vibrator.vibrate(vibe);
             } else {
-                Log.i("XXX", "go with vibrate");
                 vibrator.vibrate(pattern, repeat);
             }
-            Log.i("XXX", "handler done");
         });
-        Log.i("XXX", "done");
     }
 
 }
