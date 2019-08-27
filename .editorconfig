@@ -13,4 +13,3 @@ indent_size = 4
 
 [*.{m,h,mm,c,cc,cpp}]
 indent_size = 4
-

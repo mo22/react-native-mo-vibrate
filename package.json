@@ -1,6 +1,6 @@
 {
   "name": "react-native-mo-vibrate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "react-native vibrate / haptic feedback",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -13,7 +13,7 @@
     "*.podspec"
   ],
   "devDependencies": {
-    "@types/react-native": "^0.60.7",
+    "@types/react-native": "^0.60.8",
     "react": "^16.9.0",
     "react-native": "^0.60.5",
     "typescript": "^3.5.3"
