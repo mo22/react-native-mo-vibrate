@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { View, TouchableOpacity, Text, PermissionsAndroid } from 'react-native';
+import { PermissionsAndroid, ScrollView } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import { Vibrate } from 'react-native-mo-vibrate';
 
 function keysOf<T extends {}>(obj: T): (keyof T)[] {
@@ -9,42 +10,30 @@ function keysOf<T extends {}>(obj: T): (keyof T)[] {
 export default class Menu extends React.PureComponent<{}> {
   public render() {
     return (
-      <View style={{ flex: 1 }}>
+      <ScrollView>
 
-        <View style={{ height: 100 }} />
-
-        <TouchableOpacity
+        <ListItem
+          title="nothing"
+          chevron={true}
           onPress={() => {
           }}
-          style={{
-            padding: 10,
-            margin: 10,
-            borderRadius: 5,
-            backgroundColor: 'red',
-          }}
-        >
-          <Text>nothing</Text>
-        </TouchableOpacity>
+        />
 
         {keysOf(Vibrate.Type).map((type) => (
-          <TouchableOpacity
+          <ListItem
             key={type}
+            title={type}
+            chevron={true}
             onPress={() => {
               Vibrate.vibrate(Vibrate.Type[type]);
             }}
-            style={{
-              padding: 10,
-              margin: 10,
-              borderRadius: 5,
-              backgroundColor: 'red',
-            }}
-          >
-            <Text>{type}</Text>
-          </TouchableOpacity>
+          />
         ))}
 
         {Vibrate.android.Module && (
-          <TouchableOpacity
+          <ListItem
+            title="android custom"
+            chevron={true}
             onPress={async () => {
               await PermissionsAndroid.request('android.permission.VIBRATE' as any);
               Vibrate.android.Module!.vibratePattern({
@@ -53,34 +42,32 @@ export default class Menu extends React.PureComponent<{}> {
                 repeat: -1,
               });
             }}
-            style={{
-              padding: 10,
-              margin: 10,
-              borderRadius: 5,
-              backgroundColor: 'red',
-            }}
-          >
-            <Text>android custom</Text>
-          </TouchableOpacity>
+          />
         )}
 
-        {Vibrate.ios.Module && (
-          <TouchableOpacity
+        {Vibrate.android.Module && keysOf(Vibrate.android.VibrateType).map((type) => (
+          <ListItem
+            key={type}
+            title={'android ' + type}
+            chevron={true}
             onPress={() => {
-              Vibrate.ios.Module!.vibrate(Vibrate.ios.VibrateType.NotificationSuccess);
+              Vibrate.android.Module!.vibrate(Vibrate.android.VibrateType[type]);
             }}
-            style={{
-              padding: 10,
-              margin: 10,
-              borderRadius: 5,
-              backgroundColor: 'red',
-            }}
-          >
-            <Text>ios custom</Text>
-          </TouchableOpacity>
-        )}
+          />
+        ))}
 
-      </View>
+        {Vibrate.ios.Module && keysOf(Vibrate.ios.VibrateType).map((type) => (
+          <ListItem
+            key={type}
+            title={'ios ' + type}
+            chevron={true}
+            onPress={() => {
+              Vibrate.ios.Module!.vibrate(Vibrate.ios.VibrateType[type]);
+            }}
+          />
+        ))}
+
+      </ScrollView>
     );
   }
 }

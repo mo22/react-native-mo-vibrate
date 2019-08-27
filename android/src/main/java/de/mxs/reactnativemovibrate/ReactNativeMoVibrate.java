@@ -3,7 +3,6 @@ package de.mxs.reactnativemovibrate;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.os.Handler;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
@@ -34,16 +33,17 @@ public class ReactNativeMoVibrate extends ReactContextBaseJavaModule {
     @ReactMethod
     public void vibrate(int type) {
         // https://developer.android.com/reference/android/view/HapticFeedbackConstants
-        Activity activity = getReactApplicationContext().getCurrentActivity();
-        if (activity == null) return;
-        View view = activity.getWindow().getDecorView();
-        view.performHapticFeedback(type, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
+        getReactApplicationContext().runOnUiQueueThread(() -> {
+            Activity activity = getReactApplicationContext().getCurrentActivity();
+            if (activity == null) return;
+            View view = activity.getWindow().getDecorView();
+            view.performHapticFeedback(type, HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
+        });
     }
 
     @SuppressWarnings("unused")
     @ReactMethod
     public void vibratePattern(ReadableMap args) {
-        Log.i("XXX", "hello1 " + args);
         long[] pattern;
         {
             ReadableArray tmp = args.getArray("pattern");
@@ -66,29 +66,25 @@ public class ReactNativeMoVibrate extends ReactContextBaseJavaModule {
             }
         }
         int repeat = args.getInt("repeat");
-        Vibrator vibrator = (Vibrator)getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-        if (false && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            Log.i("XXX", "go with waveform");
-            VibrationEffect vibe = VibrationEffect.createWaveform(pattern, amplitude, repeat);
-//            VibrationEffect vibe = VibrationEffect.createOneShot(1000, 255);
-            Log.i("XXX", "vibe=" + vibe);
-            if (getReactApplicationContext().checkSelfPermission(android.Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
-                Log.i("XXX", "go vibrate");
-//                vibrator.vibrate(vibe); // this locks android up?
-                new Handler().post(() -> {
-                    Vibrator vibrator2 = (Vibrator)getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
-                    vibrator2.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
-                });
-//                getReactApplicationContext().runOnUiQueueThread(() -> vibrator.vibrate(vibe));
-
+        getReactApplicationContext().runOnUiQueueThread(() -> {
+            Vibrator vibrator = (Vibrator)getReactApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                Log.i("XXX", "go with waveform");
+                VibrationEffect vibe = VibrationEffect.createWaveform(pattern, amplitude, repeat);
+                Log.i("XXX", "vibe=" + vibe);
+                if (getReactApplicationContext().checkSelfPermission(android.Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
+                    Log.i("XXX", "go vibrate");
+                    vibrator.vibrate(vibe); // this locks android up?
+                } else {
+                    Log.i("XXX", "no permission");
+                }
+                Log.i("XXX", "yeah");
             } else {
-                Log.i("XXX", "no permission");
+                Log.i("XXX", "go with vibrate");
+                vibrator.vibrate(pattern, repeat);
             }
-            Log.i("XXX", "yeah");
-        } else {
-            Log.i("XXX", "go with vibrate");
-            vibrator.vibrate(pattern, repeat);
-        }
+            Log.i("XXX", "handler done");
+        });
         Log.i("XXX", "done");
     }
 
