@@ -43,6 +43,21 @@ class App extends React.PureComponent<{}> {
           </TouchableOpacity>
         ))}
 
+        {Vibrate.android && (
+          <TouchableOpacity
+            onPress={() => {
+            }}
+            style={{
+              padding: 10,
+              margin: 10,
+              borderRadius: 5,
+              backgroundColor: 'red',
+            }}
+          >
+            <Text>android custom</Text>
+          </TouchableOpacity>
+        )}
+
       </View>
     );
   }
