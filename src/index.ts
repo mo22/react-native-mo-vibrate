@@ -2,7 +2,14 @@ import * as ios from './ios';
 import * as android from './android';
 
 export enum VibrateType {
+  /*
+   * just a tap
+   */
   TAP = 'tap',
+
+  /*
+   * medium one time
+   */
   MEDIUM = 'medium',
   HEAVY = 'heavy',
 }
@@ -10,6 +17,9 @@ export enum VibrateType {
 export class Vibrate {
   public static readonly Type = VibrateType;
 
+  /*
+   * Vibrate
+   */
   public static vibrate(type: VibrateType) {
     if (ios.Module) {
       if (type === VibrateType.TAP) {
