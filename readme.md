@@ -2,7 +2,13 @@
 
 Lets you vibrate your phone from react-native
 
+## Installation
+
+Install just like your ordinary react-native module.
+
 ## Usage
+
+Please check the [example/](example/) code.
 
 ```ts
 import { Vibrate } from 'react-native-mo-vibrate';
