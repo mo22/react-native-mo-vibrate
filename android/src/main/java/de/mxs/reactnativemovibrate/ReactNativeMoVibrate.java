@@ -39,7 +39,7 @@ public class ReactNativeMoVibrate extends ReactContextBaseJavaModule {
         });
     }
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings({"unused", "deprecation"})
     @ReactMethod
     public void vibratePattern(ReadableMap args) {
         long[] pattern;
