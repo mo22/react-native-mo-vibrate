@@ -70,6 +70,7 @@ public class ReactNativeMoVibrate extends ReactContextBaseJavaModule {
                 VibrationEffect vibe = VibrationEffect.createWaveform(pattern, amplitude, repeat);
                 vibrator.vibrate(vibe);
             } else {
+                // this is deprecated
                 vibrator.vibrate(pattern, repeat);
             }
         });
